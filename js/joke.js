@@ -19,27 +19,22 @@ class Joke {
 
         for (let i = 0; i < 10; i++) {
             var row = document.createElement("tr");
-            
-            for (var j = 0; j < 2; j++) {
-                var cell = document.createElement("td");
+            var cell = document.createElement("td");
 
-                var cellSetup = document.createElement("h2");
-                var setupText = document.createTextNode(res[i][0]);
-                cellSetup.appendChild(setupText);
+            var cellSetup = document.createElement("h2");
+            var setupText = document.createTextNode(res[i].setup);
+            cellSetup.appendChild(setupText);
 
-                var cellPunch = document.createElement("p");
-                var punchText = document.createTextNode(res[i][1]);
-                cellPunch.appendChild(punchText);
+            var cellPunch = document.createElement("p");
+            var punchText = document.createTextNode(res[i].punchline);
+            cellPunch.appendChild(punchText);
 
-                cell.appendChild(cellSetup);
-                cell.appendChild(cellPunch);
-                row.appendChild(cell);
-
-                tblBody.appendChild(row);
-            }
-
+            cell.appendChild(cellSetup);
+            cell.appendChild(cellPunch);
+            row.appendChild(cell);
+            tblBody.appendChild(row);
             table.appendChild(tblBody);
-            tabla.setAttribute("border", "2");
+            table.setAttribute("border", "1");
         }
 
         console.log(res);
