@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>User Authentication API</h1>
+
+        <input type="text" name="username" id="username" placeholder="Type your user name...">
+        <input type="password" name="password" id="password" placeholder="Type your password...">
+        <button type="submit" id="check">Check</button>
+
+        <h3 id="result"></h3>
+
+        <script type="module">
+            var name = document.getElementById("username");
+            var pass = document.getElementById("password");
+            var check = document.getElementById("check");
+            var result = document.getElementById("result");
+
+            check.addEventListener("click", function() {
+                let userData = {
+                    username: name,
+                    password: pass
+                };
+
+                const peticion = {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                }
+                
+                fetch('http://localhost:3000/auth', peticion)
+                    .then(response => result.innerHTML(response))
+                    .catch(err => console.log('Solicitud fallida', err));
+            });
+        </script>
+    </body>
+</html>
