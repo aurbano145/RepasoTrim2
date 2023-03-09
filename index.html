@@ -22,23 +22,29 @@
             var result = document.getElementById("result");
 
             check.addEventListener("click", function() {
-                let userData = {
-                    username: name,
-                    password: pass
-                };
-
                 const peticion = {
                     method: 'POST',
                     headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(userData)
+                    body: JSON.stringify({username: name.value, password: pass.value})
                 }
                 
                 fetch('http://localhost:3000/auth', peticion)
-                    .then(response => result.innerHTML(response))
-                    .catch(err => console.log('Solicitud fallida', err));
+                    .then(response => {
+                        return response.text();
+                    })
+                    .then(data => {
+                        result.innerHTML = data;
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                    /*.then(response => console.log(response.text()))
+                    .then((body) => {result.innerHTML = (body);
+                    });*/
             });
         </script>
     </body>
