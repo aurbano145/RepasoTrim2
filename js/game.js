@@ -3,11 +3,15 @@ class Game {
     enemyBoats = [];
 
     createBoats(inputData, confirmBtn, display) {
-        if(this.playerBoats.length < 5) {
-            if(/(?:1?\d|20?)+[,]+(?:1?\d|20?)/.test(inputData.value)) {
-                var position = (inputData.value).split(",");
-                var positionArray = [position[0], position[1]];
+        if(/(?:1?\d|20?)+[,]+(?:1?\d|20?)/.test(inputData.value)) {
+            var position = (inputData.value).split(",");
+            var positionArray = [parseInt(position[0]), parseInt(position[1])];
 
+            console.log(positionArray);
+
+            if(this.playerBoats.includes(positionArray)) {
+                console.log("The position has been already registered");
+            } else {
                 this.playerBoats.push(positionArray);
 
                 positionArray = [];
@@ -16,11 +20,14 @@ class Game {
 
                 display.innerHTML = this.playerBoats.join(' / ');
                 console.log(JSON.stringify(this.playerBoats));
-            } else {
-                console.log("Position format is incorrect");
             }
+
         } else {
-            confirmBtn.disable = true;
+            console.log("Position format is incorrect");
+        }
+
+        if(this.playerBoats.length == 5) {
+            confirmBtn.disabled = true;
             
             this.createEnemyBoats();
         }
