@@ -6,4 +6,4 @@ var displayBoats = document.getElementById("playerBoats");
 
 var game = new Game();
 
-confirmButton.addEventListener('click', function() {game.createBoats(inputField, displayBoats)});
+confirmButton.addEventListener('click', function() {game.createBoats(inputField, confirmButton, displayBoats)});
