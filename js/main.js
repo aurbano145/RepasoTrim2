@@ -1,9 +1,9 @@
-import {Player} from "./player.js";
+import {Game} from "./game.js";
 
 var inputField = document.getElementById("boatInput");
 var confirmButton = document.getElementById("confirmButton");
 var displayBoats = document.getElementById("playerBoats");
 
-var p1 = new Player();
+var game = new Game();
 
-confirmButton.addEventListener('click', function() {p1.createBoats(inputField, displayBoats)});
+confirmButton.addEventListener('click', function() {game.createBoats(inputField, displayBoats)});
