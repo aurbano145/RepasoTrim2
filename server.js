@@ -5,7 +5,7 @@ const app = express();
 
 var jsonParser = bodyParser.json();
 
-app.get("/regex", jsonParser, function (req, res) {
+app.post("/regex", jsonParser, function (req, res) {
 
     if (/[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/.test(req.body.email)) {
         res.send("The email introduced is VALID");
