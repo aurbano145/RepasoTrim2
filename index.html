@@ -7,17 +7,21 @@
         <title>Document</title>
     </head>
     <body>
-        <label for="boatInput">Introduce your boats position:</label>
-        <input type="text" name="boatInput" id="boatInput">
-        <button type="submit" id="confirmButton">Confirm</button>
+        <div class="create" id="createShow">
+            <label for="createInput">Introduce your boats position:</label>
+            <input type="text" name="createInput" id="createInput">
+            <button type="submit" id="createButton">Confirm</button>
+        </div>
+        
+        <p id="playerShips"></p>
 
-        <p id="playerBoats"></p>
-
-        <div class="start">
+        <div class="attack" id="attackShow">
             <label for="attackInput">Introduce position to attack:</label>
             <input type="text" name="attackInput" id="attackInput">
             <button type="submit" id="attackButton">Attack!</button>
         </div>
+
+        <p id="attackDisplay"></p>
 
         <script type="module" src="js/main.js"></script>
     </body>

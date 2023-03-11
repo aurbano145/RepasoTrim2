@@ -1,9 +1,17 @@
 import {Game} from "./game.js";
 
-var inputField = document.getElementById("boatInput");
-var confirmButton = document.getElementById("confirmButton");
-var displayBoats = document.getElementById("playerBoats");
+var createShow = document.getElementById("createShow");
+var createInput = document.getElementById("createInput");
+var createButton = document.getElementById("createButton");
+var playerShipsDisplay = document.getElementById("playerShips");
+
+var attackShow = document.getElementById("attackShow");
+var attackInput = document.getElementById("attackInput");
+var attackButton = document.getElementById("attackButton");
+var attackDisplay = document.getElementById("attackDisplay");
 
 var game = new Game();
 
-confirmButton.addEventListener('click', function() {game.createBoats(inputField, confirmButton, displayBoats)});
+createButton.addEventListener('click', function() {game.createShips(createInput, createShow, playerShipsDisplay)});
+
+attackButton.addEventListener('click', function() {game.attackShip(attackShow, attackInput, attackButton, attackDisplay)});

@@ -1,8 +1,128 @@
 class Game {
-    playerBoats = [];
-    enemyBoats = [];
+    playerShips = [];
+    enemyShips = [];
 
-    createBoats(inputData, confirmBtn, display) {
+    createShips(inputCreate, createShow, createDisplay) {
+        var pattern = /^[(](20|1[0-9]|[0-9]),(20|1[0-9]|[0-9])[)]$/;
+        var newShip = inputCreate.value;
+
+        if(this.playerShips.length < 5) {
+            if(pattern.test(newShip)) {
+                const match = newShip.match(pattern);
+                var newPosition = parseInt(match[1]) + "," + parseInt(match[2]);
+
+                if(this.playerShips.length > 0) {
+
+                    if(this.playerShips.includes(newPosition)) {
+                        console.log("The position has been already registered...");
+                    } else {
+                        this.playerShips.push(newPosition);
+
+                        newPosition = [];
+
+                        inputCreate.value = '';
+
+                        createDisplay.innerHTML = this.playerShips.join(' | ');
+                        //console.log(JSON.stringify(this.playerBoats));
+                    }
+
+                } else {
+                    this.playerShips.push(newPosition);
+
+                    newPosition = [];
+
+                    inputCreate.value = '';
+
+                    createDisplay.innerHTML = this.playerShips.join(' | ');
+                    //console.log(JSON.stringify(this.playerBoats));
+                }
+
+            } else {
+                console.log("Position format is incorrect...");
+            }
+        }
+
+        if(this.playerShips.length == 5) {
+            createShow.style.display = "none";
+
+            do {
+                var randomNum1 = Math.floor(Math.random() * 21);
+                var randomNum2 = Math.floor(Math.random() * 21);
+                var enemyPosArray = '';
+
+                enemyPosArray = randomNum1 + "," + randomNum2;
+
+                if(this.enemyShips.length > 0) {
+                    if(!this.playerShips.includes(enemyPosArray) && !this.enemyShips.includes(enemyPosArray)) {
+                        this.enemyShips.push(enemyPosArray);
+                    } else {
+                        enemyPosArray = randomNum1 + "," + randomNum2;
+                    }
+                } else {
+                    if(!this.playerShips.includes(enemyPosArray)) {
+                        this.enemyShips.push(enemyPosArray);
+                    } else {
+                        enemyPosArray = randomNum1 + "," + randomNum2;
+                    }
+                }
+
+            } while (this.enemyShips.length < 5);
+
+            console.log(JSON.stringify(this.enemyShips));
+        }
+    }
+
+    attackShip(attackShow, attackInput, attackButton, attackDisplay) {
+        if (this.playerShips.length != 0 || this.enemyShips.length != 0) {
+            //attackShow.display = block;
+
+            var playerAttack = attackInput.value;
+
+            if(this.enemyShips.includes(playerAttack)) {
+                for(var i = 0; i < this.enemyShips.length; i++) {
+                    if(playerAttack == this.enemyShips[i]) {
+                        this.enemyShips.splice(i, 1);
+                    }
+                }
+                
+                console.log("Enemy ship sunk!");
+
+            } else {
+                console.log("Attack failed!");
+            }
+
+            var randomNum1 = Math.floor(Math.random() * 21);
+            var randomNum2 = Math.floor(Math.random() * 21);
+            
+            var enemyAttack = randomNum1 + "," + randomNum2;
+
+            if(this.playerShips.includes(enemyAttack)) {
+                for(var i = 0; i < this.playerShips.length; i++) {
+                    if(enemyAttack == this.playerShips[i]) {
+                        this.playerShips.splice(i, 1);
+                    }
+                }
+                
+                console.log("The enemy has sunk one of your ships! --> " + enemyAttack);
+
+            } else {
+                console.log("Enemy attack failed!");
+            }
+
+        } 
+        
+        if(this.playerShips.length == 0 || this.enemyShips.length == 0) {
+            attackButton.disabled = true;
+    
+            if(this.playerShips.length == 0) {
+                console.log("You lose...");
+            } else {
+                console.log("You win!")
+            }
+        }
+    }
+
+    /*createBoats(inputData, confirmBtn, display) {
         if(/(?:1?\d|20?)+[,]+(?:1?\d|20?)/.test(inputData.value)) {
             var position = (inputData.value).split(",");
             var positionArray = parseInt(position[0]) + "," + parseInt(position[1]);
@@ -113,7 +233,7 @@ class Game {
         } else {
             console.log("You win!")
         }
-    }
+    }*/
 }
 
 export {Game};
