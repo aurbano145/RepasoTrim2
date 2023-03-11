@@ -4,19 +4,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Sunk the Ship Offline</title>
     </head>
     <body>
         <div class="create" id="createShow">
-            <label for="createInput">Introduce your boats position:</label>
+            <label for="createInput">Introduce your ships position: </label>
             <input type="text" name="createInput" id="createInput">
             <button type="submit" id="createButton">Confirm</button>
+            <p id="errorDisplay"></p>
         </div>
         
         <p id="playerShips"></p>
 
-        <div class="attack" id="attackShow">
-            <label for="attackInput">Introduce position to attack:</label>
+        <div class="attack" id="attackShow" style="display: none;">
+            <label for="attackInput">Introduce position to attack: </label>
             <input type="text" name="attackInput" id="attackInput">
             <button type="submit" id="attackButton">Attack!</button>
         </div>

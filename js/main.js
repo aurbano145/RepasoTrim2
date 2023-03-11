@@ -3,6 +3,7 @@ import {Game} from "./game.js";
 var createShow = document.getElementById("createShow");
 var createInput = document.getElementById("createInput");
 var createButton = document.getElementById("createButton");
+var errorDisplay = document.getElementById("errorDisplay");
 var playerShipsDisplay = document.getElementById("playerShips");
 
 var attackShow = document.getElementById("attackShow");
@@ -12,6 +13,6 @@ var attackDisplay = document.getElementById("attackDisplay");
 
 var game = new Game();
 
-createButton.addEventListener('click', function() {game.createShips(createInput, createShow, playerShipsDisplay)});
+createButton.addEventListener('click', function() {game.createShips(createInput, createShow, playerShipsDisplay, attackShow, errorDisplay)});
 
-attackButton.addEventListener('click', function() {game.attackShip(attackShow, attackInput, attackButton, attackDisplay)});
+attackButton.addEventListener('click', function() {game.attackShip(attackInput, attackButton, attackDisplay, playerShipsDisplay)});
